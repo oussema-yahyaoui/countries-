@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+    
+       <table>
+            <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Capital</th>
+                  <th>Population</th>
+                  <th>Borders</th>
+                  <th>Flag</th>
+
+                </tr>
+            </thead>
+            <tbody id="resulat">
+
+            </tbody>
+            
+            </table>
+
+       </table> 
+
+
+       <script>
+
+        $.ajax({
+            url:"https://restcountries.eu/rest/v2/all",
+            type:"GET",
+            success:function(data){
+                var r= "";
+                for(i in data){
+                    r+="<tr>"
+                    r+="<td>"+ i +"</td>"
+                    r+="<td>"+ data[i].name +"</td>"
+                    r+="<td>"+ data[i].capital +"</td>"
+                    r+="<td>"+ data[i].population +"</td>"
+                    r+="<td>" +data[i].borders +"</td>"
+                    r+="<td><img src='" + data[i].flag +"' class=center style='width:50%';height:50%</td>"
+                    r+="</tr>"
+
+                    // console.log(data[i].name)
+                }
+                document.getElementById("resulat").innerHTML=r;
+                // console.log(data.);
+                // alert(JSON.stringify(data));
+            }
+        })
+    </script>
+</body>
+</html>
